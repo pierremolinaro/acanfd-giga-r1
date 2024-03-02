@@ -74,8 +74,8 @@ void setup () {
 
   settings.mModuleMode = ACANFD_GIGA_R1_Settings::EXTERNAL_LOOP_BACK ;
 
-  // settings.mTxPin = PB_9 ;
-  // settings.mRxPin = PB_8 ;
+  settings.mTxPin = PH_13 ;
+  settings.mRxPin = PH_14 ;
   uint32_t errorCode = fdcan1.beginFD (settings) ;
   Serial.print ("FDCAN1 Message RAM required minimum size: ") ;
   Serial.print (fdcan1.messageRamRequiredMinimumSize ()) ;
@@ -87,8 +87,8 @@ void setup () {
     Serial.println (errorCode, HEX) ;
   }
 
-  // settings.mTxPin = 255 ;
-  // settings.mRxPin = 255 ;
+  settings.mTxPin = PB_6 ;
+  settings.mRxPin = PB_12 ;
   errorCode = fdcan2.beginFD (settings) ;
   Serial.print ("FDCAN2 Message RAM required minimum size: ") ;
   Serial.print (fdcan2.messageRamRequiredMinimumSize ()) ;

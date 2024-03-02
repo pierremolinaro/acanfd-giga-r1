@@ -11,7 +11,6 @@
 
 #include <stm32h7xx_hal_rcc.h>
 
-
 //----------------------------------------------------------------------------------------
 //   Settings for STM32H747
 //----------------------------------------------------------------------------------------
@@ -25,8 +24,7 @@ inline uint32_t fdcanClock (void) {
   //--- Enable CAN clock
     // __HAL_RCC_FDCAN_CLK_ENABLE () ;
     { SET_BIT (RCC->APB1HENR, RCC_APB1HENR_FDCANEN) ;
-      // Delay after an RCC peripheral clock enabling
-      const uint32_t x __attribute__((unused)) = READ_BIT (RCC->APB1HENR, RCC_APB1HENR_FDCANEN) ;
+      uint32_t x __attribute__((unused)) = READ_BIT (RCC->APB1HENR, RCC_APB1HENR_FDCANEN) ;
     }
   //--- Reset CAN peripherals
     __HAL_RCC_FDCAN_FORCE_RESET () ;
@@ -34,8 +32,7 @@ inline uint32_t fdcanClock (void) {
   //--- Select CAN clock
     LL_RCC_SetFDCANClockSource (LL_RCC_FDCAN_CLKSOURCE_PLL1Q) ;
   }
-//   return LL_RCC_GetFDCANClockFreq (LL_RCC_FDCAN_CLKSOURCE_PLL1Q) ;
-  return HAL_RCC_GetPCLK1Freq () ;
+  return LL_RCC_GetFDCANClockFreq (LL_RCC_FDCAN_CLKSOURCE_PLL1Q) ;
 }
 
 //----------------------------------------------------------------------------------------

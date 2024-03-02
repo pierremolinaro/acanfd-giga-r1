@@ -12,7 +12,7 @@
 
 #include <ACANFD_GIGA_R1_Settings.h>
 #include <ACANFD_GIGA_R1_FIFO.h>
-#include <CANFDMessage.h>
+#include <ACANFD_GIGA_R1_CANFDMessage.h>
 #include <Arduino.h>
 
 //----------------------------------------------------------------------------------------
