@@ -42,7 +42,7 @@ inline uint32_t fdcanClock (void) {
 class ACANFD_GIGA_R1_Settings {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  //   Enumerations
+  //   Enumeration
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   public: typedef enum : uint8_t {
