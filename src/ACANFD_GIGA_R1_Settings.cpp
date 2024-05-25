@@ -151,8 +151,6 @@ mDataBitRateFactor (inDataBitRateFactor) {
   }
 //--- Set RJW to PS2
   mArbitrationSJW = mArbitrationPhaseSegment2 ;
-//--- Triple sampling ?
-  mTripleSampling = (mDesiredArbitrationBitRate <= 125000) && (mArbitrationPhaseSegment1 >= 2) ;
 //-------------------------- Final check of the configuration
   const uint32_t W = bestArbitrationTQCount * mDesiredArbitrationBitRate * mBitRatePrescaler ;
   const uint64_t diff = (FDCAN_ROOT_CLOCK_FREQUENCY > W) ? (FDCAN_ROOT_CLOCK_FREQUENCY - W) : (W - FDCAN_ROOT_CLOCK_FREQUENCY) ;
@@ -207,7 +205,7 @@ uint32_t ACANFD_GIGA_R1_Settings::ppmFromWishedBitRate (void) const {
 
 float ACANFD_GIGA_R1_Settings::arbitrationSamplePointFromBitStart (void) const {
   const uint32_t TQCount = 1 /* Sync Seg */ + mArbitrationPhaseSegment1 + mArbitrationPhaseSegment2 ;
-  const uint32_t samplePoint = 1 /* Sync Seg */ + mArbitrationPhaseSegment1 - mTripleSampling ;
+  const uint32_t samplePoint = 1 /* Sync Seg */ + mArbitrationPhaseSegment1 ;
   const float partPerCent = 100.0 ;
   return (float (samplePoint) * partPerCent) / float (TQCount) ;
 }
@@ -232,8 +230,6 @@ uint32_t ACANFD_GIGA_R1_Settings::checkBitSettingConsistency (void) const {
   }
   if (mArbitrationPhaseSegment1 < MIN_ARBITRATION_PS1) {
     errorCode |= kArbitrationPhaseSegment1IsZero ;
-  }else if ((mArbitrationPhaseSegment1 == 1) && mTripleSampling) {
-    errorCode |= kArbitrationPhaseSegment1Is1AndTripleSampling ;
   }else if (mArbitrationPhaseSegment1 > MAX_ARBITRATION_PS1) {
     errorCode |= kArbitrationPhaseSegment1IsGreaterThan256 ;
   }

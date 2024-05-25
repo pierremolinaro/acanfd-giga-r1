@@ -87,7 +87,6 @@ class ACANFD_GIGA_R1_Settings {
 //--- Transceiver Delay Compensation
   public: uint32_t mTransceiverDelayCompensation = 0 ; // 0 ... 127
 
-  public: bool mTripleSampling = false ; // true --> triple sampling, false --> single sampling
   public: bool mBitSettingOk = true ; // The above configuration is correct
 
 //--- Module Mode
@@ -160,7 +159,7 @@ class ACANFD_GIGA_R1_Settings {
   public: static const uint32_t kArbitrationSJWIsZero                         = 1U <<  6 ;
   public: static const uint32_t kArbitrationSJWIsGreaterThan128               = 1U <<  7 ;
   public: static const uint32_t kArbitrationSJWIsGreaterThanPhaseSegment2     = 1U <<  8 ;
-  public: static const uint32_t kArbitrationPhaseSegment1Is1AndTripleSampling = 1U <<  9 ;
+
   public: static const uint32_t kDataPhaseSegment1IsZero                      = 1U << 10 ;
   public: static const uint32_t kDataPhaseSegment1IsGreaterThan32             = 1U << 11 ;
   public: static const uint32_t kDataPhaseSegment2IsLowerThan2                = 1U << 12 ;
